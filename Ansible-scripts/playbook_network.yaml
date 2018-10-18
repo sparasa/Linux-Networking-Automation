@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+   - name: define a network
+     virt_net:
+      command: define
+      name: sparasa_NETWORK3
+      xml: "{{ lookup('template', 'sparasa_NETWORK3.xml') }}"
+   - name: Start network
+     virt_net: 
+      command: create
+      name: sparasa_NETWORK3
+   - name: auto start the network
+     virt_net:
+      autostart: "yes"
+      name: sparasa_NETWORK3
+   - name: create bridge
+     command: brctl addbr sw3 
+...
