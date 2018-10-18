@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no 
+  tasks:
+   - name: Creates customlogs directory
+     file: path=/var/customlogs state=directory
+
+   - name: Creates logs directory
+     file: path=/var/customlogs/logs state=directory
+
+   - name: ensure file exists
+     command: sudo touch /var/customlogs/logs/log.csv
+  
+   - name: Ensure a job that runs at 1 minute
+     cron:
+       name: "run playbook"
+       minute: "*/1"
+       job: "ansible-playbook {{playbook_dir}}/playbook_log.yaml"
+       state: present
+...
