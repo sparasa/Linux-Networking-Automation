@@ -1,0 +1,12 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit sparasa_NETWORK2
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>sparasa_NETWORK3</name>
+  <forward mode='bridge'/>
+  <bridge name='sw3'/>
+</network>
