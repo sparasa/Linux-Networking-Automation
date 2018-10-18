@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+   - name: Q4-VM1 Installation
+     command: sudo virt-install -n Q4-VM1 -r 2048 --vcpu=4 --cpu host --disk path=/var/lib/libvirt/images/Q4-VM1.img,size=10 --network network=sparasa_NETWORK3 -c /home/ece792/CentOS-7-x86_64-Minimal-1804.iso.1 -v
+   - name: Q4-VM2 Installation
+     command: sudo virt-install -n Q4-VM2 -r 2048 --vcpu=4 --cpu host --disk path=/var/lib/libvirt/images/Q4-VM2.img,size=10 --network network=sparasa_NETWORK3 -c /home/ece792/CentOS-7-x86_64-Minimal-1804.iso.1 -v
+...
