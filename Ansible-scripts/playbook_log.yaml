@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+   - name: Transfer the script
+     copy: src=cpuload.sh dest=~/ mode=0777
+
+   - name: Execute the script
+     shell: uptime | awk -F'[a-z]:' '{split($1,a," "); print a[1] "," $2}'
+     register: foo_result
+     
+   - name: log foo_result to file
+     lineinfile:
+        line: "{{ inventory_hostname }}, {{ foo_result.stdout }}"
+        insertafter: EOF
+        dest: /var/customlogs/logs/log.csv
+     delegate_to: 127.0.0.1
+...
